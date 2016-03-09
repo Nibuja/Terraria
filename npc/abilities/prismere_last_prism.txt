@@ -1,0 +1,194 @@
+
+"prismere_last_prism"
+{
+        // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"      
+    "AbilityTextureName"            "gyrocopter_homing_missile"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+               
+               
+    "precache"
+      {
+
+          "particle"  "particles/basic_projectile/tinker_laser_b.vpcf"
+          "particle"  "particles/basic_projectile/tinker_laser_b_2.vpcf"
+          "particle"  "particles/basic_projectile/tinker_laser_b_3.vpcf"
+          "particle"  "particles/basic_projectile/tinker_laser_b_4.vpcf"
+          "particle"  "particles/basic_projectile/tinker_laser_b_5.vpcf"
+          "particle"  "particles/basic_projectile/tinker_laser_b_6.vpcf"
+          "particle"  "particles/basic_projectile/tinker_laser_b_7.vpcf"
+          "particle"  "particles/basic_projectile/tinker_laser_b_8.vpcf"
+          "soundfile" "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+      }  
+
+               
+    //Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"                              "15000"
+    "AbilityCastPoint"                              "0.0 0.0 0.0 0.0"
+    "AbilityCastAnimation"                          "ACT_DOTA_ATTACK"
+    "AbilityCooldown"                               "60.0"
+    "AbilityManaCost"                               "250"
+    "AbilityDamage"                                 "%damage"
+
+                       
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "range"                         "15000"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage"                        "10 15 20"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"                      "10"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "stun_duration"                 "0.2"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "slow"                          "-70 -70 -70 -70"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "turn_rate"                    "-150 -150 -150 -150"
+            }
+   
+       
+    }
+    // Spell
+    //----------------------------------------------------------------------------------------------------------------
+
+    "OnSpellStart"
+    {
+        "RunScript"
+        {
+            "ScriptFile"    "heroes/hero_prismere/prismere_last_prism.lua"
+            "Function"        "CheckVectors"
+            "Target"           "POINT"
+        }
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_last_prism_self"
+            "Target"         "CASTER"
+            "Duration"        "%duration"
+        }
+        "SpawnUnit"
+        {
+            "UnitName"        "dummy_unit"
+            "Target"         "CASTER"
+            "UnitCount"        "8"
+            "OnSpawn"
+            {
+                "ApplyModifier"
+                {
+                    "ModifierName"    "modifier_kill"
+                    "Target"        "TARGET"
+                    "Duration"        "10"
+                }
+        
+                "RunScript"
+                {
+                    "ScriptFile"    "heroes/hero_prismere/prismere_last_prism.lua"
+                    "Function"        "SpawnLocation"
+                    "Target"            "TARGET"
+                }
+            }
+        }
+    }
+    "Modifiers"
+    {
+        "modifier_last_prism_check"
+        {
+            "Passive"            "1"
+            "IsHidden"            "0"
+            "IsDebuff"            "0"
+    
+            "ThinkInterval"  "1"
+            "OnIntervalThink"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "heroes/hero_prismere/prismere_last_prism.lua"
+                    "Function"        "LastPrism"
+                }
+            }
+        }
+        "modifier_last_prism_speed"
+        {
+            "Passive"            "0"
+            "IsHidden"            "1"
+            "IsDebuff"            "0"
+
+        
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "30" 
+            }
+        }
+        "modifier_last_prism_dummy_movement"
+        {
+            "Passive"            "0"
+            "IsHidden"            "0"
+            "IsDebuff"            "0"
+
+
+            "States"
+            {
+                "MODIFIER_STATE_UNSELECTABLE"           "MODIFIER_STATE_VALUE_ENABLED"
+                "MODIFIER_STATE_NOT_ON_MINIMAP"         "MODIFIER_STATE_VALUE_ENABLED"
+                "MODIFIER_STATE_MAGIC_IMMUNE"           "MODIFIER_STATE_VALUE_ENABLED"
+                "MODIFIER_STATE_NO_HEALTH_BAR"          "MODIFIER_STATE_VALUE_ENABLED"
+                "MODIFIER_STATE_NO_UNIT_COLLISION"      "MODIFIER_STATE_VALUE_ENABLED"
+                "MODIFIER_STATE_INVISIBLE"              "MODIFIER_STATE_VALUE_ENABLED"
+
+            }
+        }
+        "modifier_last_prism_self"
+        {
+            "Passive"            "0"
+            "IsHidden"            "0"
+            "IsDebuff"            "0"
+        
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"                "%turn_rate"
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"          "%slow"
+            }
+
+            "OnCreated"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "heroes/hero_prismere/prismere_last_prism.lua"
+                    "Function"        "DummyMovement"
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,377 @@
+"prismere_lasting_light"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "FightRecapLevel"               "1"
+    "AbilityTextureName"            "tinker_laser"
+    
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"              "600"
+    "AbilityCastPoint"              "0.4 0.4 0.4 0.4"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "25.0 22.0 19.0 16.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "180 180 180 180"
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"              "FIELD_FLOAT"
+            "damage"         "20 40 60 80"
+        }
+        "02"
+        {
+            "var_type"              "FIELD_FLOAT"
+            "think_interval"        "0.1"
+        }
+        "03"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "break_range"             "800"
+        }
+        "04"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "range"                   "600"
+        }
+        "05"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "duration"                  "5"
+        }
+    }
+    
+    // Data driven
+    //-------------------------------------------------------------------------------------------------------------
+    "precache"
+    {
+        "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+        "particle"                  "particles/units/heroes/hero_oracle/oracle_fortune_purge_root_pnt.vpcf"
+        "particle"                  "particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
+        "particle"                  "particles/units/heroes/hero_wisp/wisp_tether_end.vpcf"
+        "particle"                  "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+    }
+    
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "Target"                "CASTER"
+            "EffectName"            "Hero_Tinker.Laser"
+        }
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_lasting_light_debuff"
+            "Target"         "TARGET"
+            "Duration"        "%duration"
+        }
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_lasting_light_self"
+            "Target"         "CASTER"
+            "Duration"        "%duration"
+        }
+                "TrackingProjectile"
+        {
+            "Target"               "TARGET"
+            "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+            "Dodgeable"            "1"
+            "ProvidesVision"    "0"
+            "MoveSpeed"            "1100"
+            "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+        }
+        "DelayedAction"
+        {
+            "Delay"     "0.3"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+        "DelayedAction"
+        {
+            "Delay"     "0.6"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+        "DelayedAction"
+        {
+            "Delay"     "0.9"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+        "DelayedAction"
+        {
+            "Delay"     "1.2"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "1.5"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "1.8"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "2.1"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "2.4"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "2.7"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "3"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "3.3"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "3.6"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "3.9"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "4.2"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+                "DelayedAction"
+        {
+            "Delay"     "4.6"
+            "Action"    
+            {
+                "TrackingProjectile"
+                {
+                    "Target"               "TARGET"
+                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+                    "Dodgeable"            "1"
+                    "ProvidesVision"    "0"
+                    "MoveSpeed"            "1100"
+                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                }
+            }
+        }
+
+    }
+    
+    "Modifiers"
+    {
+        "modifier_lasting_light_debuff"
+        {
+            "Passive"            "0"
+            "IsHidden"            "1"
+            "IsDebuff"            "1"
+    
+            "ThinkInterval"  "%think_interval"
+            "OnIntervalThink"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "heroes/hero_prismere/prismere_lasting_light.lua"
+                    "Function"        "DoDamage"
+                    "Target"           "TARGET"
+                }
+            }
+        }
+        "modifier_lasting_light_self"
+        {
+            "Passive"            "0"
+            "IsHidden"            "1"
+            "IsDebuff"            "0"
+        
+            "EffectName"        "particles/units/heroes/hero_oracle/oracle_fortune_purge_root_pnt.vpcf"
+            "EffectAttachType"    "follow_origin"
+
+            "States"
+            {
+                "MODIFIER_STATE_ROOTED"        "MODIFIER_STATE_VALUE_ENABLED"
+                "MODIFIER_STATE_DISARMED"  "MODIFIER_STATE_VALUE_ENABLED"
+                "MODIFIER_STATE_SILENCED"   "MODIFIER_STATE_VALUE_ENABLED"
+            }
+        }
+    }
+}
+

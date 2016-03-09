@@ -1,0 +1,818 @@
+"DOTAAbilities"
+{
+	"prismere_lasting_light"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"            "tinker_laser"
+	    
+	    // Casting
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"              "600"
+	    "AbilityCastPoint"              "0.4 0.4 0.4 0.4"
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "25.0 22.0 19.0 16.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"               "180 180 180 180"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "damage"         "20 40 60 80"
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "think_interval"        "0.1"
+	        }
+	        "03"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "break_range"             "800"
+	        }
+	        "04"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "range"                   "600"
+	        }
+	        "05"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "duration"                  "5"
+	        }
+	    }
+	    
+	    // Data driven
+	    //-------------------------------------------------------------------------------------------------------------
+	    "precache"
+	    {
+	        "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+	        "particle"                  "particles/units/heroes/hero_oracle/oracle_fortune_purge_root_pnt.vpcf"
+	        "particle"                  "particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
+	        "particle"                  "particles/units/heroes/hero_wisp/wisp_tether_end.vpcf"
+	        "particle"                  "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	    }
+	    
+	    "OnSpellStart"
+	    {
+	        "FireSound"
+	        {
+	            "Target"                "CASTER"
+	            "EffectName"            "Hero_Tinker.Laser"
+	        }
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_lasting_light_debuff"
+	            "Target"         "TARGET"
+	            "Duration"        "%duration"
+	        }
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_lasting_light_self"
+	            "Target"         "CASTER"
+	            "Duration"        "%duration"
+	        }
+	                "TrackingProjectile"
+	        {
+	            "Target"               "TARGET"
+	            "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	            "Dodgeable"            "1"
+	            "ProvidesVision"    "0"
+	            "MoveSpeed"            "1100"
+	            "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	        }
+	        "DelayedAction"
+	        {
+	            "Delay"     "0.3"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	        "DelayedAction"
+	        {
+	            "Delay"     "0.6"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	        "DelayedAction"
+	        {
+	            "Delay"     "0.9"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	        "DelayedAction"
+	        {
+	            "Delay"     "1.2"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "1.5"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "1.8"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "2.1"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "2.4"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "2.7"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "3"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "3.3"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "3.6"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "3.9"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "4.2"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	                "DelayedAction"
+	        {
+	            "Delay"     "4.6"
+	            "Action"    
+	            {
+	                "TrackingProjectile"
+	                {
+	                    "Target"               "TARGET"
+	                    "EffectName"        "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+	                    "Dodgeable"            "1"
+	                    "ProvidesVision"    "0"
+	                    "MoveSpeed"            "1100"
+	                    "SourceAttachment"    "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	                }
+	            }
+	        }
+	
+	    }
+	    
+	    "Modifiers"
+	    {
+	        "modifier_lasting_light_debuff"
+	        {
+	            "Passive"            "0"
+	            "IsHidden"            "1"
+	            "IsDebuff"            "1"
+	    
+	            "ThinkInterval"  "%think_interval"
+	            "OnIntervalThink"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "heroes/hero_prismere/prismere_lasting_light.lua"
+	                    "Function"        "DoDamage"
+	                    "Target"           "TARGET"
+	                }
+	            }
+	        }
+	        "modifier_lasting_light_self"
+	        {
+	            "Passive"            "0"
+	            "IsHidden"            "1"
+	            "IsDebuff"            "0"
+	        
+	            "EffectName"        "particles/units/heroes/hero_oracle/oracle_fortune_purge_root_pnt.vpcf"
+	            "EffectAttachType"    "follow_origin"
+	
+	            "States"
+	            {
+	                "MODIFIER_STATE_ROOTED"        "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_DISARMED"  "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_SILENCED"   "MODIFIER_STATE_VALUE_ENABLED"
+	            }
+	        }
+	    }
+	}
+	
+	
+	"prismere_last_prism"
+	{
+	        // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"      
+	    "AbilityTextureName"            "gyrocopter_homing_missile"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	               
+	               
+	    "precache"
+	      {
+	
+	          "particle"  "particles/basic_projectile/tinker_laser_b.vpcf"
+	          "particle"  "particles/basic_projectile/tinker_laser_b_2.vpcf"
+	          "particle"  "particles/basic_projectile/tinker_laser_b_3.vpcf"
+	          "particle"  "particles/basic_projectile/tinker_laser_b_4.vpcf"
+	          "particle"  "particles/basic_projectile/tinker_laser_b_5.vpcf"
+	          "particle"  "particles/basic_projectile/tinker_laser_b_6.vpcf"
+	          "particle"  "particles/basic_projectile/tinker_laser_b_7.vpcf"
+	          "particle"  "particles/basic_projectile/tinker_laser_b_8.vpcf"
+	          "soundfile" "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+	      }  
+	
+	               
+	    //Stats
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"                              "15000"
+	    "AbilityCastPoint"                              "0.0 0.0 0.0 0.0"
+	    "AbilityCastAnimation"                          "ACT_DOTA_ATTACK"
+	    "AbilityCooldown"                               "60.0"
+	    "AbilityManaCost"                               "250"
+	    "AbilityDamage"                                 "%damage"
+	
+	                       
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	            "01"
+	            {
+	                "var_type"                      "FIELD_INTEGER"
+	                "range"                         "15000"
+	            }
+	            "02"
+	            {
+	                "var_type"                      "FIELD_INTEGER"
+	                "damage"                        "300 450 600"
+	            }
+	            "03"
+	            {
+	                "var_type"                      "FIELD_INTEGER"
+	                "duration"                      "10"
+	            }
+	            "04"
+	            {
+	                "var_type"                      "FIELD_FLOAT"
+	                "stun_duration"                 "0.2"
+	            }
+	            "05"
+	            {
+	                "var_type"                      "FIELD_INTEGER"
+	                "slow"                          "-70 -70 -70 -70"
+	            }
+	            "06"
+	            {
+	                "var_type"                      "FIELD_INTEGER"
+	                "turn_rate"                    "-150 -150 -150 -150"
+	            }
+	   
+	       
+	    }
+	    // Spell
+	    //----------------------------------------------------------------------------------------------------------------
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "ScriptFile"    "heroes/hero_prismere/prismere_last_prism.lua"
+	            "Function"        "CheckVectors"
+	            "Target"           "POINT"
+	        }
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_last_prism_self"
+	            "Target"         "CASTER"
+	            "Duration"        "%duration"
+	        }
+	        "SpawnUnit"
+	        {
+	            "UnitName"        "dummy_unit"
+	            "Target"         "CASTER"
+	            "UnitCount"        "8"
+	            "OnSpawn"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "ModifierName"    "modifier_kill"
+	                    "Target"        "TARGET"
+	                    "Duration"        "10"
+	                }
+	        
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "heroes/hero_prismere/prismere_last_prism.lua"
+	                    "Function"        "SpawnLocation"
+	                    "Target"            "TARGET"
+	                }
+	            }
+	        }
+	    }
+	    "Modifiers"
+	    {
+	        "modifier_last_prism_check"
+	        {
+	            "Passive"            "1"
+	            "IsHidden"            "0"
+	            "IsDebuff"            "0"
+	    
+	            "ThinkInterval"  "1"
+	            "OnIntervalThink"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "heroes/hero_prismere/prismere_last_prism.lua"
+	                    "Function"        "LastPrism"
+	                }
+	            }
+	        }
+	        "modifier_last_prism_speed"
+	        {
+	            "Passive"            "0"
+	            "IsHidden"            "1"
+	            "IsDebuff"            "0"
+	
+	        
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "30" 
+	            }
+	        }
+	        "modifier_last_prism_dummy_movement"
+	        {
+	            "Passive"            "0"
+	            "IsHidden"            "0"
+	            "IsDebuff"            "0"
+	
+	
+	            "States"
+	            {
+	                "MODIFIER_STATE_UNSELECTABLE"           "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NOT_ON_MINIMAP"         "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_MAGIC_IMMUNE"           "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_HEALTH_BAR"          "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_UNIT_COLLISION"      "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_INVISIBLE"              "MODIFIER_STATE_VALUE_ENABLED"
+	
+	            }
+	        }
+	        "modifier_last_prism_self"
+	        {
+	            "Passive"            "0"
+	            "IsHidden"            "0"
+	            "IsDebuff"            "0"
+	        
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"                "%turn_rate"
+	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"          "%slow"
+	            }
+	
+	            "OnCreated"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "heroes/hero_prismere/prismere_last_prism.lua"
+	                    "Function"        "DummyMovement"
+	                }
+	            }
+	        }
+	    }
+	}
+	
+	
+	
+	
+	
+	
+	
+	"prismere_multi_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"razor_plasma_field"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0 0 0 0"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14"
+		"AbilityCastRange"				"500 600 700 800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 125 125 125"		
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"500 600 700 800"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"4"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"think_interval"	"0.5"
+			}
+		}
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_oracle/oracle_fortune_prj_trail.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Tinker.Laser"
+				"Target" 		"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_multi_strike_damage_think"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_multi_strike_damage_think"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"ThinkInterval"  "%think_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_prismere/prismere_multi_strike.lua"
+						"Function"		"Projectile"
+					}
+				}
+			}
+		
+			"modifier_multi_strike_target"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_prismere/prismere_multi_strike.lua"
+						"Function"		"DoDamage"
+					}
+				}
+			}
+		}
+	}
+	"prismere_shiny_pressure"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" 
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"            "tinker_laser"
+	
+	    // Casting
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"              "1200"
+	
+	    "AbilityCooldown"                "10 8 6 4"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"            "FIELD_INTEGER"
+	            "push_range"            "1200"
+	        }
+	        "02"
+	        {
+	            "var_type"            "FIELD_FLOAT"
+	            "push_per_stack"        "10"
+	        }
+	        "03"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "cooldown"              "10 8 6 4"
+	        }
+	    }
+	
+	    "precache"
+	    {
+	        "particle"  "particles/prototype_fx/item_linkens_buff_explosion_wave.vpcf"
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_shiny_pressure"
+	        {
+	            "Passive"            "1"
+	            "IsHidden"            "0"
+	            "IsDebuff"            "0"
+	    
+	            "OnDealDamage"
+	            // "%attack_damage" is set to the damage value after mitigation
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "heroes/hero_prismere/prismere_shiny_pressure.lua"
+	                    "Function"        "CooldownStart"
+	                }
+	                "ApplyModifier"
+	                {
+	                    "ModifierName"    "modifier_particles"
+	                    "Target"         "Caster"
+	                }
+	            }
+	        }
+	        "modifier_shiny_pressure_stacks"
+	        {
+	            "Passive"            "1"
+	            "IsHidden"            "0"
+	            "IsDebuff"            "0"
+	
+	        
+	            "OnAttackLanded"
+	            // "%attack_damage" is set to the damage value before mitigation
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "heroes/hero_prismere/prismere_shiny_pressure.lua"
+	                    "Function"        "StackIncrease"
+	                    "Target"        "TARGET"
+	                }
+	            }
+	        }
+	        "modifier__shiny_pressure_particles"
+	        {
+	            "Passive"            "0"
+	            "IsHidden"            "0"
+	            "IsDebuff"            "0"
+	        
+	            "OnCreated"
+	            {
+	                "AttachEffect"
+	                {
+	                    "EffectName"        "particles/prototype_fx/item_linkens_buff_explosion_wave.vpcf"
+	                    "EffectAttachType"  "follow_origin"
+	                    "Target"            "CASTER"
+	                }
+	                "RemoveModifier"
+	                {
+	                    "ModifierName"    "modifier_particles"
+	                    "Target"         "CASTER"
+	                }
+	            }
+	        }
+	        "modifier_shiny_pressure_knockback"
+	        {
+	            "Passive"            "0"
+	            "IsHidden"            "0"
+	            "IsDebuff"            "1"
+	        
+	            "OnCreated"
+	            {
+	                "ApplyMotionController"
+	                {
+	                    "Caster"         "CASTER"
+	                    "ScriptFile"    "heroes/hero_prismere/prismere_shiny_pressure.lua"
+	                    "VerticalControlFunction"     "Knockback"         
+	                }
+	            }
+	        }
+	        "modifier__shiny_pressure_debuff"
+	        {
+	            "Passive"            "0"
+	            "IsHidden"            "0"
+	            "IsDebuff"            "1"
+	        
+	            "States"
+	            {
+	                "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+	            }
+	        }
+	    }
+	}
+}
